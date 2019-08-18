@@ -22,6 +22,7 @@ export class QuestionComponent implements OnInit {
   public question: Observable<Question>;
   private questionsSubscription: Subscription;
 
+  public max_questions: number;
   public current_question: number;  
 
   public econ: number; 
@@ -35,9 +36,11 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() {
 
+    this.max_questions = 70;
+
     this.current_question = parseInt(this.route.snapshot.paramMap.get('id'));
 
-    if(this.current_question > 3){
+    if(this.current_question > this.max_questions){
    
       this.results();
 
@@ -91,7 +94,7 @@ export class QuestionComponent implements OnInit {
     
     this.current_question++; 
 
-    if (this.current_question < 3) {
+    if (this.current_question < this.max_questions) {
       //reroute
       this.router.navigate(['/question', this.current_question]);
       
