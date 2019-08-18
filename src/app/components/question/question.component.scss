@@ -3,16 +3,22 @@
     width: 64%;
     margin: 10px 20% 10px 0;
     font-size: 1.1em;
-}
+} 
 .question-card button:nth-child(1) {
-    background-color: navy;
+    background-color: green;
+}
+.question-card button:nth-child(2) {
+    background-color: rgb(158, 224, 58);
+    color: black;
 }
 .question-card button:nth-child(3) {
-    background-color: orange;
+    background-color: #e0e0e0;
+    color: black;
 }
 .question-card button:nth-child(4) {
-    background-color: orangered;
+    background-color: rgb(255, 166, 195);
+    color: black;
 }
 .question-card button:nth-child(5) {
-    background-color: crimson;
+    background-color: rgb(201, 3, 3);
 }
