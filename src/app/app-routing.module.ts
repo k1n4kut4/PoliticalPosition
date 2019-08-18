@@ -7,7 +7,7 @@ import { ResultsComponent } from './components/results/results.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'question/:id', component: QuestionComponent },
+  { path: 'question', component: QuestionComponent },
   { path: 'results', component: ResultsComponent },
   { path: 'results/:a/:b/:c/:d', component: ResultsComponent },
 ];

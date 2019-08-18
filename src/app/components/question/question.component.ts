@@ -24,7 +24,7 @@ export class QuestionComponent implements OnInit {
   private questionsSubscription: Subscription;
 
   public max_questions: number;
-  public current_question: number;  
+  public current_question: number = 1; 
 
   public econ: number; 
   public dipl: number; 
@@ -37,33 +37,7 @@ export class QuestionComponent implements OnInit {
 
       route.params.subscribe(val => {
 
-        this.max_questions = 70;
-
-        this.current_question = parseInt(this.route.snapshot.paramMap.get('id'));
-    
-        if(this.current_question > this.max_questions){
-        
-          this.results();
-    
-        }else if(this.current_question > 1){
-    
-          let savedValues = this.data.retrieveStoredVaues(); 
-    
-          this.econ = parseInt(savedValues[0]);
-          this.dipl = parseInt(savedValues[1]);
-          this.govt = parseInt(savedValues[2]);
-          this.scty = parseInt(savedValues[3]);
-    
-        }else{
-    
-          this.data.resetStoredVaues();
-    
-          this.econ = 0;
-          this.dipl = 0;
-          this.govt = 0;
-          this.scty = 0;
-    
-        }
+        this.max_questions = 70; 
     
         this.getQuestions(this.current_question); 
 
@@ -81,7 +55,31 @@ export class QuestionComponent implements OnInit {
 
   }
 
-  getQuestions(q){ 
+  getQuestions(q){  
+
+    if(this.current_question > this.max_questions){
+    
+      this.results();
+
+    }else if(this.current_question > 1){
+
+      let savedValues = this.data.retrieveStoredVaues(); 
+
+      this.econ = parseInt(savedValues[0]);
+      this.dipl = parseInt(savedValues[1]);
+      this.govt = parseInt(savedValues[2]);
+      this.scty = parseInt(savedValues[3]);
+
+    }else{
+
+      this.data.resetStoredVaues();
+
+      this.econ = 0;
+      this.dipl = 0;
+      this.govt = 0;
+      this.scty = 0;
+
+    }
 
     let i =0;
     //subscribe to questions, from questions.json
@@ -110,8 +108,10 @@ export class QuestionComponent implements OnInit {
 
     if (this.current_question < this.max_questions) { 
 
+      this.getQuestions(this.current_question);
+
       //reroute
-      this.router.navigate(['/question', this.current_question]);
+      //this.router.navigate(['/question']);
       
     } else {
       this.results();
