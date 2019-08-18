@@ -1,1 +1,32 @@
-<p>home works!</p>
+<div class="page-wrapper container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+    <div class="quiz-col" fxFlex="70%">
+
+        <h3>Welcome!</h3>
+
+        <div id="results" fxLayout="row wrap" fxLayoutGap="16px">
+
+            <mat-card class="result-card" 
+                fxFlex="calc(50% - 56px)">
+
+                <mat-card-header>
+                    <mat-card-title class="item-result">What's your position?</mat-card-title> 
+                </mat-card-header>   
+
+                <mat-card-content>
+                    <p>Welcome to the quiz</p> 
+                </mat-card-content>
+
+                <mat-card-actions> 
+                    <button mat-raised-button color="primary" 
+                    class="question-response"
+                    [routerLink]="['/question/1']">Let's Play!</button>
+                </mat-card-actions>
+
+            </mat-card>
+
+        </div>
+
+    </div> 
+
+</div>
