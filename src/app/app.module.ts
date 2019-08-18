@@ -6,11 +6,17 @@ import { AppMaterialModule  } from './app-material.module';
 import { FlexModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app.component';
+import { QuestionComponent } from './components/question/question.component';
+import { ResultsComponent } from './components/results/results.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    QuestionComponent,
+    ResultsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
