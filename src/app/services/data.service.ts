@@ -13,7 +13,10 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Question } from "../models/question.model"; 
 
 /** services */
-import { CachingService } from "./caching.service"; 
+import { StorageService } from "./storage.service"; 
+import { CachingService } from "./caching.service";
+
+const values_KEY = "values"; 
  
 @Injectable({
   providedIn: 'root'
@@ -25,10 +28,14 @@ export class DataService extends CachingService {
   
   //question observable
   private questions: Observable<Question[]>;  
+  private storage: Storage;
 
   //we need to set up the HTTP client
-  public constructor(private http: HttpClient) {
+  public constructor(private storageService: StorageService, private http: HttpClient) {
     super();
+
+    //get local storage
+    this.storage = this.storageService.get();
   }
 
   public getQuestions(): Observable<Question[]> {
@@ -50,6 +57,17 @@ export class DataService extends CachingService {
   //error handler for api call
   private errorHandler(error: HttpErrorResponse){
     return Observable.throw(error.message) || "Server error";
+  }
+
+  //save basket details (including contents) to local storage
+  public saveStoredVaues(a,b,c,d): void {
+    let values = [a,b,c,d];
+    this.storage.setItem(values_KEY, JSON.stringify(values));
+  } 
+
+  public retrieveStoredVaues(){
+    const storedValues = this.storage.getItem(values_KEY);
+    return storedValues;
   }
 
 }

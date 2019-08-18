@@ -15,7 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 
 /** services */ 
 import { DataService } from './services/data.service';
-//import { LocalStorageService, StorageService } from "./services/storage.service"; 
+import { LocalStorageService, StorageService } from "./services/storage.service"; 
 
 @NgModule({
   declarations: [
@@ -34,8 +34,8 @@ import { DataService } from './services/data.service';
   ],
   providers: [
     DataService, 
-    //LocalStorageService,
-    //{ provide: StorageService, useClass: LocalStorageService }
+    LocalStorageService,
+    { provide: StorageService, useClass: LocalStorageService }
   ],
   bootstrap: [AppComponent]
 })

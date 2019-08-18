@@ -32,6 +32,8 @@ export class QuestionComponent implements OnInit {
 
     this.current_question = 1;
 
+    console.log(this.data.retrieveStoredVaues());
+
     this.econ = 0;
     this.dipl = 0;
     this.govt = 0;
@@ -61,7 +63,9 @@ export class QuestionComponent implements OnInit {
     this.scty += mult * this.questions[0].scty; 
 
     //update storage
-    
+    this.data.saveStoredVaues(this.econ, this.dipl, this.govt, this.scty);
+
+    console.log(this.data.retrieveStoredVaues());
     
     this.current_question++; 
 

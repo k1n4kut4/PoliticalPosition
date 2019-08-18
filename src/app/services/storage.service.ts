@@ -1,9 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+//import "rxjs/add/operator/share";
 
+export abstract class StorageService {
+
+  public abstract get(): Storage;
+}
+  
 @Injectable({
   providedIn: 'root'
 })
-export class StorageService {
+export class LocalStorageService extends StorageService {
 
-  constructor() { }
+  public get(): Storage {
+    return localStorage;
+  }
+  
 }
