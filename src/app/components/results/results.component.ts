@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observer, Observable, Subscription } from "rxjs";
 
 /** models */
-import { Question } from "../../models/question.model"; 
+import { Ideology } from "../../models/ideology.model";
 
 /** services */ 
 import { DataService } from './../../services/data.service';
@@ -18,11 +18,10 @@ import { DataService } from './../../services/data.service';
 })
 export class ResultsComponent implements OnInit { 
 
-  public questions: Question[]; 
-  public question: Observable<Question>;
-  private questionsSubscription: Subscription;
-
-  public current_question: number;  
+  public ideologies: Ideology[]; 
+  public ideology: any;
+  private ideologiesSubscription: Subscription;
+  public ideodist: any; 
 
   public econ: number; 
   public dipl: number; 
@@ -37,7 +36,7 @@ export class ResultsComponent implements OnInit {
   public econArray: any;
   public diplArray: any;
   public govtArray: any; 
-  public sctyArray: any;
+  public sctyArray: any; 
   
   constructor(private router: Router, 
     private route: ActivatedRoute, 
@@ -64,7 +63,42 @@ export class ResultsComponent implements OnInit {
     this.govtTag = this.setLabel((this.govt-1), this.govtArray);
     this.sctyTag = this.setLabel((this.scty-1), this.sctyArray);
 
+    //subscribe to ideologies, from ideologies.json
+    this.ideologiesSubscription = this.data.getIdeologies().subscribe(res => { 
+
+      this.ideologies = res;
+
+      console.log(this.ideologies);
+
+      for (var i = 0; i < this.ideologies.length; i++) {
+  
+          let dist = 0
+  
+          dist += Math.pow(Math.abs(this.ideologies[i].econ - (this.econ-1)), 2)
+          dist += Math.pow(Math.abs(this.ideologies[i].govt - (this.dipl-1)), 2)
+          dist += Math.pow(Math.abs(this.ideologies[i].dipl - (this.govt-1)), 1.73856063)
+          dist += Math.pow(Math.abs(this.ideologies[i].scty - (this.scty-1)), 1.73856063)
+
+          this.ideodist = Infinity;
+          if (dist < this.ideodist) {
+            this.ideology = this.ideologies[i].name
+            this.ideodist = dist
+          } 
+  
+      }
+
+    });  
+
   } 
+
+  ngOnDestroy(): void {
+
+    //destroy the ideologies subscription
+    if (this.ideologiesSubscription) {
+      this.ideologiesSubscription.unsubscribe();
+    }
+
+  }
 
   private setLabel(val,ary) {
       if (val > 100) { return "" } else

@@ -17,6 +17,7 @@ import { DataService } from './../../services/data.service';
   styleUrls: ['./question.component.scss']
 })
 export class QuestionComponent implements OnInit {
+  
   public questions: Question[]; 
   public question: Observable<Question>;
   private questionsSubscription: Subscription;

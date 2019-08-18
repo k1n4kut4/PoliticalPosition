@@ -11,6 +11,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 /** models */
 import { Question } from "../models/question.model"; 
+import { Ideology } from "../models/ideology.model";
 
 /** services */
 import { StorageService } from "./storage.service"; 
@@ -24,10 +25,11 @@ const values_KEY = "values";
 export class DataService extends CachingService {
 
   //Url for question data
-  private apiUrl = './assets/json/questions.json';
+  private apiUrl = './assets/json/'; 
   
   //question observable
   private questions: Observable<Question[]>;  
+  private ideologies: Observable<Ideology[]>;  
   private storage: Storage;
 
   //we need to set up the HTTP client
@@ -46,9 +48,25 @@ export class DataService extends CachingService {
     return this.cache<Question[]>(() => this.questions,
       (val: Observable<Question[]>) => this.questions = val, //Observable
       () => this.http
-        .get(this.apiUrl)
+        .get(this.apiUrl+'questions.json')
           //map the response as per the Question model
           .pipe(map((response) => response as Question[] || []))
+    ); 
+    // .catch(this.errorHandler); 
+
+  } 
+
+  public getIdeologies(): Observable<Ideology[]> {
+
+    //api call
+    //HTTP GET request to local 'ideologies.json' file for latest questions
+
+    return this.cache<Ideology[]>(() => this.ideologies,
+      (val: Observable<Ideology[]>) => this.ideologies = val, //Observable
+      () => this.http
+      .get(this.apiUrl+'ideologies.json')
+          //map the response as per the Question model
+          .pipe(map((response) => response as Ideology[] || []))
     ); 
     // .catch(this.errorHandler); 
 
