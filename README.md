@@ -1,11 +1,23 @@
 # PoliticalPosition
 No political intent. Quiz determines where you sit on the political spectrums.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
+Angular 8 shopping app. 
+- Generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
+- RxJS Observables
+- Local storage of user's responses to questions
+- Uses HTTP API to pull JSON files with question and ideology data 
+- Google Material and Font Awesome styling. SCSS
+- Intend to add unit tests: Karma (runner), Jasmine (framework), SinonJS (mocking), e2e
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Home
+![home_route](./readme_imgs/home-route.png)
+
+## /question
+![question_route](./readme_imgs/question-route.png)
 
 ## Code scaffolding
 
