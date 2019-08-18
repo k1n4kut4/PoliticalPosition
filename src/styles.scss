@@ -3,3 +3,38 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-toolbar.mat-primary {
+    background-color: crimson;
+}
+
+.page-wrapper .quiz-col {
+
+    margin-right: 14%;
+    max-width: 80% !important;
+
+    h3 {
+        margin-left: 15px;
+    }
+
+    .mat-card {
+        padding: 20px 35px 30px 35px;
+    }
+
+    .mat-card .mat-card-header .mat-card-header-text {
+        margin-left: -10px;
+
+        .mat-card-title{
+            font-size: 1.7em;
+        }
+    }
+
+    .mat-card .mat-card-content {
+        font-size: 1.1em; 
+    }
+
+    button {
+        margin: 0;
+    }
+
+}

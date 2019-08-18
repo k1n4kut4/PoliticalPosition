@@ -1,0 +1,18 @@
+.question-card button {
+    height: 65px;
+    width: 64%;
+    margin: 10px 20% 10px 0;
+    font-size: 1.1em;
+}
+.question-card button:nth-child(1) {
+    background-color: navy;
+}
+.question-card button:nth-child(3) {
+    background-color: orange;
+}
+.question-card button:nth-child(4) {
+    background-color: orangered;
+}
+.question-card button:nth-child(5) {
+    background-color: crimson;
+}
