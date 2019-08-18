@@ -1,12 +1,12 @@
 <div class="page-wrapper container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
 
-    <div class="shop-col" fxFlex="70%">
+    <div class="quiz-col" fxFlex="70%">
 
         <h3>Question {{ current_question }}</h3>
 
         <div id="questions" fxLayout="row wrap" fxLayoutGap="16px">
 
-            <mat-card class="uestion-card"
+            <mat-card class="question-card"
                 *ngFor="let question of questions; index as i"
                 fxFlex="calc(50% - 56px)">
 
