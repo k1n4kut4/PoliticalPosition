@@ -1,1 +1,41 @@
-<p>question works!</p>
+<div class="page-wrapper container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+    <div class="shop-col" fxFlex="70%">
+
+        <h3>Question {{ current_question }}</h3>
+
+        <div id="questions" fxLayout="row wrap" fxLayoutGap="16px">
+
+            <mat-card class="uestion-card"
+                *ngFor="let question of questions; index as i"
+                fxFlex="calc(50% - 56px)">
+
+                <mat-card-header>
+                    <mat-card-title class="item-question">{{ question.question }}</mat-card-title> 
+                </mat-card-header>  
+
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" 
+                    class="question-response"
+                    (click)="questionResponse(2)">Strongly Agree</button>
+                    <button mat-raised-button color="primary" 
+                    class="question-response"
+                    (click)="questionResponse(1)">Agree</button>
+                    <button mat-raised-button color="primary" 
+                    class="question-response"
+                    (click)="questionResponse(0)">Neutral</button>
+                    <button mat-raised-button color="warn" 
+                    class="question-response"
+                    (click)="questionResponse(-1)">Disgree</button>
+                    <button mat-raised-button color="warn" 
+                    class="question-response"
+                    (click)="questionResponse(-2)">Strongly Disgree</button>
+                </mat-card-actions>
+
+            </mat-card>
+
+        </div>
+
+    </div> 
+
+</div>
