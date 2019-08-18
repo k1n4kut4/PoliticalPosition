@@ -1,4 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 /** rxjs */
 import { Observer, Observable, Subscription } from "rxjs";
@@ -26,18 +28,35 @@ export class QuestionComponent implements OnInit {
   public govt: number; 
   public scty: number; 
 
-  constructor(private data: DataService) { }
+  constructor(private router: Router, 
+    private route: ActivatedRoute, 
+    private data: DataService,) { }
 
   ngOnInit() {
 
-    this.current_question = 1;
+    this.current_question = parseInt(this.route.snapshot.paramMap.get('id'));
 
-    console.log(this.data.retrieveStoredVaues());
+    if(this.current_question > 3){
+   
+      this.results();
 
-    this.econ = 0;
-    this.dipl = 0;
-    this.govt = 0;
-    this.scty = 0;
+    }else if(this.current_question > 1){
+
+      let savedValues = this.data.retrieveStoredVaues(); 
+
+      this.econ = parseInt(savedValues[0]);
+      this.dipl = parseInt(savedValues[1]);
+      this.govt = parseInt(savedValues[2]);
+      this.scty = parseInt(savedValues[3]);
+
+    }else{
+
+      this.econ = 0;
+      this.dipl = 0;
+      this.govt = 0;
+      this.scty = 0;
+
+    }
 
     //subscribe to questions, from questions.json
     this.questionsSubscription = this.data.getQuestions().subscribe(res => { 
@@ -69,10 +88,10 @@ export class QuestionComponent implements OnInit {
     
     this.current_question++; 
 
-    if (this.current_question < 70) {
+    if (this.current_question < 3) {
       //reroute
+      this.router.navigate(['/question', this.current_question]);
       
-
     } else {
       this.results();
     }
@@ -81,6 +100,7 @@ export class QuestionComponent implements OnInit {
   results(){
 
     //reroute
+    this.router.navigate(['/results', this.econ, this.dipl, this.govt, this.scty]);
 
   }
 

@@ -61,13 +61,13 @@ export class DataService extends CachingService {
 
   //save basket details (including contents) to local storage
   public saveStoredVaues(a,b,c,d): void {
-    let values = [a,b,c,d];
+    let values = [a,b,c,d]; 
     this.storage.setItem(values_KEY, JSON.stringify(values));
   } 
 
-  public retrieveStoredVaues(){
+  public retrieveStoredVaues(): Array<any>{
     const storedValues = this.storage.getItem(values_KEY);
-    return storedValues;
+    return JSON.parse(storedValues);
   }
 
 }
