@@ -70,4 +70,10 @@ export class DataService extends CachingService {
     return JSON.parse(storedValues);
   }
 
+  //resets the values, by replacing with values set to [0,0,0,0]
+  public resetStoredVaues(): void {
+    let values = [0,0,0,0]; 
+    this.storage.setItem(values_KEY, JSON.stringify(values));
+  } 
+
 }

@@ -51,6 +51,8 @@ export class QuestionComponent implements OnInit {
 
     }else{
 
+      this.data.resetStoredVaues();
+
       this.econ = 0;
       this.dipl = 0;
       this.govt = 0;
